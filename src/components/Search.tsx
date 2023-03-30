@@ -1,22 +1,13 @@
-import { ChangeEvent, useState } from 'react'
+
+import { ChangeEvent } from 'react';
 import Header from './Header'
 
-const Search = (): JSX.Element => {
-  const [searchValue, setSearchValue] = useState<string>('')
+type SearchProps = {
+  searchValue: string;
+  onInputChange: (e: ChangeEvent<HTMLInputElement>) => void;
+}
 
-  const getLocation = (value: string) => {
-    fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${value.trim()}&limit=5&lang=en&appid=${process.env.REACT_APP_API_KEY}`)
-      .then(res => res.json())
-      .then(data => console.log(data))
-  }
-
-  const onInputChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value.trim()
-    setSearchValue(value)
-    if (value === '') return
-    getLocation(value)
-  }
-
+const Search = ({ searchValue, onInputChange }: SearchProps): JSX.Element => {
   return (
     <>
       <section className="w-full md:max-w-[500px] p-4 flex flex-col text-center items-center justify-center md:px-10 lg:p-24 h-full lg:h-[500px] bg-white bg-opacity-20 backdrop-blur-ls rounded drop-shadow-lg text-zinc-700">
