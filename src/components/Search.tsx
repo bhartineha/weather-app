@@ -1,4 +1,4 @@
-import { ChangeEvent, ReactNode } from 'react';
+import { ChangeEvent } from 'react';
 import { optionType } from '../types';
 import Header from './Header'
 import Suggestions from './Suggestions';
